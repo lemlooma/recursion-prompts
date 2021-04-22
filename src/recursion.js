@@ -7,13 +7,23 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+    if (n ===1) return 1
+
+    return n * factorial(n-1)
+
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+    if ( array.length === 0) {
+    return 0;
+  } else {
+    const [head, ...rest] = array;
+    return head + sum(rest)
+  }
 };
-
+console.log(sum([1,2,3,4,5,6])); // 21
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
@@ -40,6 +50,8 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+
+
 };
 
 // 8. Determine if a number is a power of two.
@@ -62,7 +74,9 @@ var palindrome = function(string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function(x, y) {
+var modulo = function(x, y) { 
+
+
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
