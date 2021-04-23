@@ -13,6 +13,8 @@ var factorial = function(n) {
 
 };
 
+
+
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
@@ -24,25 +26,65 @@ var sum = function(array) {
   }
 };
 console.log(sum([1,2,3,4,5,6])); // 21
+
+
+
 // 3. Sum all numbers in an array containing nested arrays.
-// arraySum([1,[2,3],[[4]],5]); // 15
+//flatten problem
+
+// var arraySum = function(array) {
+  // let flat = array.flat() //
+  // let flat2 = flat.flat() // 
+  // if (!array.length) return null; // 
+  // return flat2[0] + arraySum(flat2.slice(1)) // 
+
+
 var arraySum = function(array) {
+let sum = 0;
+
+    array.forEach(element => {
+        if (Array.isArray(element)){
+
+           sum += arraySum(element);
+
+        } else {
+
+            sum+= element;
+        }
+    });
+
+    return sum
 };
+
+console.log(arraySum([1,[2,3],[[4]],5])); // 15  
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if(n % 2 !== 0) return false // if odd
+  if(n % 2 === 0) return true; // even
+
+  return n+ isEven(n-1)
 };
 
 // 5. Sum all integers below a given integer.
-// sumBelow(10); // 45
-// sumBelow(7); // 21
+
 var sumBelow = function(n) {
+  if ( n <= 1) return 0
+  return (n-1) + sumBelow(n-1)
 };
+console.log(sumBelow(10)); // 45
+sumBelow(7); // 21
+
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-};
+  if (y <= x) return [];
+
+  return [x, ...range(x + 1, y)]
+}
+console.log(range(2,9)); // [3,4,5,6,7,8]
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -50,24 +92,42 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
-
-
+  if (exp === 0) return 1
+  if(exp === 1) return base
+  return base + exponent(base,exp -1)
 };
+console.log(exponent(4,3)); // 64
 
-// 8. Determine if a number is a power of two.
-// powerOfTwo(1); // true
-// powerOfTwo(16); // true
-// powerOfTwo(10); // false
+// 8. Determine if a number is a power of 3.
+
 var powerOfTwo = function(n) {
+  if (n === 1) return true
+  if (n % 2 !== 0) return false; 
+  return powerOfTwo(n / 2)
 };
+// console.log(powerOfTwo(1)); // true
+console.log(powerOfTwo(18)); // true
+// console.log(powerOfTwo(10)); // false
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  if(!string.length){
+    return string
+  }
+  return reverse(string.slice(1)) + string[0]
 };
+console.log(reverse("my head is gonna explode"))
 
-// 10. Write a function that determines if a string is a palindrome.
+// 10. Write a function that determines if a string is a palindrome. // word that reads the same backwards
 var palindrome = function(string) {
+  if(string.length === 1) return true
+  if(string.length === 2) return str[0] === str[1];
+  if(str[0] === )
+
+
 };
+console.log(palindrome("madam"))
+console.log(palindrome("Dammit, I'm Mad"))
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
@@ -75,13 +135,22 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) { 
+  if (x === 0) return 0
+  if (x < y) return x
 
+  return modulo(x-y,y)
 
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
+  if( y === 1) return x
+  else {
+      return x + multiply(x,y -1)
+  }
+
+
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
@@ -102,7 +171,14 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  if(str1 !== str2) return false
+  if(srt1 === str2) return true
+
+  return compareStr(str1,str2)
 };
+console.log(compareStr('house', 'houses') // false
+console.log(compareStr('tomato', 'tomato')) // true
+
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.

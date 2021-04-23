@@ -1,9 +1,7 @@
-var sum = function(array) {
-    if ( array.length === 0) {
-    return 0;
-  } else {
-    const [head, ...rest] = array;
-    return head + sum(rest)
-  }
+var powerOfTwo = function(n) {
+  if (n === 1) return true
+  if (n % 3 === 0) return false; 
+  return powerOfTwo(n / 3)
 };
-console.log(sum([1,2,3,4,5,6])); // 21
+// console.log(powerOfTwo(1)); // true
+console.log(powerOfTwo(18)); // true
